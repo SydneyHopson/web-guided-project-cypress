@@ -50,7 +50,7 @@ it("the submit button enables when both inputs are filled out", ()=>{
   textInput().type("This is Fun"); 
   submitBtn().should("not.be.disabled"); 
 })
-it("cancel button can reset inputs and disable the submit button", ()=>{
+it("the cancel button can reset inputs and disable the submit button", ()=>{
   authorInput().type("Sydney");
   textInput().type(" Fun"); 
   cancelBtn().click();
@@ -66,18 +66,25 @@ describe("Adding a new quote", () => {
         cy.contains("CSS RULEZ").siblings("button:nth-of-type(2)").click();
         // cy.contains("CSS RULEZ").should("not.exist");
     })
+    it("variation of can submit a new quote", () =>{
+        cy.contains("CSS RULEZ").should("not.exist");
+        textInput().type("CSS RULEZ");
+        authorInput().type("Syd");
+        submitBtn().click();
+        cy.contains("CSS RULEZ");
+        cy.contains("Syd");
+        cy.contains("CSS RULEZ").next().next().click();
+        // cy.contains("CSS RULEZ").should("not.exist");
+    })
+
 })
 describe("Editing an existing quote", () => {
-    it("canedit quote", () => {
-        textInput().type("GoGo Like Diego");
+    it("can edit quote", () => {
+        textInput().type("love");
         authorInput().type("Karatesyd");
         submitBtn().click();
-        cy.contains("GoGo Like Diego").siblings("button:nth-of-type(1)".click)
-        // textInput().should("have.value", "GoGo Like Diego"),
-        // authorInput().should("have.value", "CRHarding");
-        // textInput().type("levi Sit!");
-        // authorInput().type()
-    })
+        cy.contains("love").siblings("button:nth-of-type(1)").click();
+       })
 })
 
 
